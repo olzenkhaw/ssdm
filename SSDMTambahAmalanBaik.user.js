@@ -21,7 +21,7 @@
     loadButton.textContent = 'Load';
     loadButton.type = 'button';
     const randButton = document.createElement('button');
-    randButton.textContent = 'Random';
+    randButton.textContent = 'Contoh';
     randButton.type = 'button';
 
     document.getElementsByName('Submit')[0].insertAdjacentElement('afterend', span);
@@ -79,6 +79,7 @@ function loadFromLocalStorage() {
     if (selectedAPValue !== null) document.querySelector('select[name="am_pm"]').value = selectedAPValue;
     if (selectedTempatValue !== null) document.getElementById('TEMPAT').value = selectedTempatValue;
     if (selectedGuruValue !== null) document.getElementById('papar_guru').value = selectedGuruValue;
+    if(!document.getElementsByName('benar')[0].checked) document.getElementsByName('benar')[0].click();
 }
 
 function getRandomPastWeekdayWithTime() {
@@ -176,4 +177,7 @@ function randamalanbaik()
     let randomIndex = Math.floor(Math.random() * amalanbaik.length);
 
     document.getElementById('keteranganamalanbaik').value= amalanbaik[randomIndex];
+    const selectedGuruValue = localStorage.getItem('papar_guru');
+    if (selectedGuruValue !== null) document.getElementById('papar_guru').value = localStorage.getItem('papar_guru');
+    if(!document.getElementsByName('benar')[0].checked) document.getElementsByName('benar')[0].click();
 }
