@@ -24,6 +24,103 @@
     randButton.textContent = 'Contoh';
     randButton.type = 'button';
 
+    const div = document.createElement('div');
+    div.innerHTML = `<p>Dari
+<select id="_b_hari_mula_tk1">
+    <option value="1"> 1 </option>
+    <option value="2"> 2 </option>
+    <option value="3"> 3 </option>
+    <option value="4"> 4 </option>
+    <option value="5"> 5 </option>
+    <option value="6"> 6 </option>
+    <option value="7"> 7 </option>
+    <option value="8"> 8 </option>
+    <option value="9"> 9 </option>
+    <option value="10"> 10 </option>
+    <option value="11"> 11 </option>
+    <option value="12"> 12 </option>
+    <option value="13"> 13 </option>
+    <option value="14"> 14 </option>
+    <option value="15"> 15 </option>
+    <option value="16"> 16 </option>
+    <option value="17"> 17 </option>
+    <option value="18"> 18 </option>
+    <option value="19"> 19 </option>
+    <option value="20"> 20 </option>
+    <option value="21"> 21 </option>
+    <option value="22"> 22 </option>
+    <option value="23"> 23 </option>
+    <option value="24"> 24 </option>
+    <option value="25"> 25 </option>
+    <option value="26"> 26 </option>
+    <option value="27"> 27 </option>
+    <option value="28"> 28 </option>
+    <option value="29"> 29 </option>
+    <option value="30"> 30 </option>
+    <option value="31"> 31 </option>
+</select>
+<select id="_b_bulan_mula_tk1">
+    <option value="JAN"> JAN </option>
+    <option value="FEB"> FEB </option>
+    <option value="MAR"> MAR </option>
+    <option value="APR"> APR </option>
+    <option value="MAY"> MAY </option>
+    <option value="JUN"> JUN </option>
+    <option value="JUL"> JUL </option>
+    <option value="AUG"> AUG </option>
+    <option value="SEP"> SEP </option>
+    <option value="OCT"> OCT </option>
+    <option value="NOV"> NOV </option>
+    <option value="DEC"> DEC </option>
+</select> ke
+<select id="_b_hari_mula_tk2">
+    <option value="1"> 1 </option>
+    <option value="2"> 2 </option>
+    <option value="3"> 3 </option>
+    <option value="4"> 4 </option>
+    <option value="5"> 5 </option>
+    <option value="6"> 6 </option>
+    <option value="7"> 7 </option>
+    <option value="8"> 8 </option>
+    <option value="9"> 9 </option>
+    <option value="10"> 10 </option>
+    <option value="11"> 11 </option>
+    <option value="12"> 12 </option>
+    <option value="13"> 13 </option>
+    <option value="14"> 14 </option>
+    <option value="15"> 15 </option>
+    <option value="16"> 16 </option>
+    <option value="17"> 17 </option>
+    <option value="18"> 18 </option>
+    <option value="19"> 19 </option>
+    <option value="20"> 20 </option>
+    <option value="21"> 21 </option>
+    <option value="22"> 22 </option>
+    <option value="23"> 23 </option>
+    <option value="24"> 24 </option>
+    <option value="25"> 25 </option>
+    <option value="26"> 26 </option>
+    <option value="27"> 27 </option>
+    <option value="28"> 28 </option>
+    <option value="29"> 29 </option>
+    <option value="30"> 30 </option>
+    <option value="31"> 31 </option>
+</select>
+<select id="_b_bulan_mula_tk2">
+    <option value="JAN"> JAN </option>
+    <option value="FEB"> FEB </option>
+    <option value="MAR"> MAR </option>
+    <option value="APR"> APR </option>
+    <option value="MAY"> MAY </option>
+    <option value="JUN"> JUN </option>
+    <option value="JUL"> JUL </option>
+    <option value="AUG"> AUG </option>
+    <option value="SEP"> SEP </option>
+    <option value="OCT"> OCT </option>
+    <option value="NOV"> NOV </option>
+    <option value="DEC"> DEC </option>
+</select>`;
+
     document.getElementsByName('Submit')[0].insertAdjacentElement('afterend', span);
     span.insertAdjacentElement('afterend', loadButton);
     loadButton.insertAdjacentElement('afterend', saveButton);
@@ -31,6 +128,34 @@
     saveButton.addEventListener('click', saveToLocalStorage);
     loadButton.addEventListener('click', loadFromLocalStorage);
     randButton.addEventListener('click', randamalanbaik);
+    document.getElementsByName('simpan_amalanbaik')[0].insertAdjacentElement('afterend', div);
+
+    const now = new Date();
+    document.getElementById('_b_hari_mula_tk2').value = now.getDate();
+    document.querySelector('select[name="_b_hari_mula_tk"]').value = now.getDate();
+    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    document.getElementById('_b_bulan_mula_tk2').value = months[now.getMonth()];
+    document.querySelector('select[name="_b_bulan_mula_tk"]').value= months[now.getMonth()];
+    document.getElementById('AB').value = "8";
+
+    let hour = now.getHours();
+    const minute = now.getMinutes();
+
+    const ap = hour >= 12 ? "PM" : "AM";
+
+    // Convert hour to 12-hour format
+    hour = hour % 12;
+    hour = hour === 0 ? 12 : hour; // If hour is 0 (midnight), change it to 12
+
+    // Format hour and minute with leading zeros
+    document.querySelector('select[name="jam"]').value = hour.toString().padStart(2, "0");
+    document.querySelector('select[name="minit"]').value = minute.toString().padStart(2, "0");
+    document.querySelector('select[name="am_pm"]').value = ap;
+    document.getElementById('TEMPAT').value = "01";
+    const selectedGuruValue = localStorage.getItem('papar_guru');
+    if (selectedGuruValue !== null) document.getElementById('papar_guru').value = localStorage.getItem('papar_guru');
+    if(!document.getElementsByName('benar')[0].checked) document.getElementsByName('benar')[0].click();
+    document.getElementById('keteranganamalanbaik').focus();
 })();
 
 // Save values to localStorage
@@ -84,7 +209,8 @@ function loadFromLocalStorage() {
 
 function getRandomPastWeekdayWithTime() {
     const now = new Date();
-    const yearStart = new Date(now.getFullYear(), 0, 1); // January 1 of the current year
+    const monthtono = {"JAN":0, "FEB":1, "MAR":2, "APR":3, "MAY":4, "JUN":5, "JUL":6, "AUG":7, "SEP":8, "OCT":9, "NOV":10, "DEC":11};
+    const yearStart = new Date(now.getFullYear(), monthtono[document.getElementById('_b_bulan_mula_tk1').value], parseInt(document.getElementById('_b_hari_mula_tk1').value)); // January 1 of the current year
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // Today's date without time
 
     let randomDate;
